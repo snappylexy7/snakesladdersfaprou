@@ -30,7 +30,7 @@ function updateConsoleLog(message) {
   consoleLog.innerText = message + "\n" + consoleLog.innerText;
 }
 
-// Function to update the console log area
+// Function to update the task log area
 function updateTaskLog(message) {
   const taskLog = document.getElementById("task-log");
   // taskLog.innerText = message + "\n" + taskLog.innerText;
@@ -48,17 +48,66 @@ for (const [start, end] of Object.entries(snakePositions)) {
   // Find the corresponding squares and add appropriate styling
 }
 
+// Declare variables for timer
+let startTime;
+let timerInterval;
+
+// Start the timer
+function startTimer() {
+  startTime = new Date();
+  timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+  return timerInterval; // Return the interval ID
+}
+
+// Update the timer display
+function updateTimer() {
+  const currentTime = new Date();
+  const timeDiff = currentTime - startTime;
+
+  // Convert milliseconds to minutes and seconds
+  const minutes = Math.floor(timeDiff / 60000);
+  const seconds = Math.floor((timeDiff % 60000) / 1000);
+
+  // Format the timer display
+  const formattedTime = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+  // Update the timer element
+  const timerElement = document.getElementById("timer");
+  timerElement.textContent = formattedTime;
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+}
+
 // Roll dice functionality
 const rollDiceButton = document.getElementById("roll-dice");
 rollDiceButton.addEventListener("click", () => {
+  // Start the timer on the first roll
+  if (!startTime) {
+    startTimer();
+  }
+
   const diceRoll = Math.floor(Math.random() * 6) + 1; // Generate a random number between 1 and 6
 
   const newPosition = playerPosition + diceRoll;
   const logMessage = `Player rolled a ${diceRoll}. Moving to position ${newPosition}`;
   updateConsoleLog(logMessage);
 
-  // Move the player to the new position
-  movePlayer(newPosition);
+  if (newPosition <= boardSize) {
+    // Move the player to the new position if they don't roll over 100
+    movePlayer(newPosition);
+  } else {
+    // Calculate the number of squares the player rolled over
+    const squaresRolledOver = newPosition - boardSize;
+    const backPosition = boardSize - squaresRolledOver;
+
+    const logMessage = `Player rolled over! Moving back ${squaresRolledOver} squares to position ${backPosition}`;
+    updateConsoleLog(logMessage);
+
+    // Move the player back
+    movePlayer(backPosition);
+  }
 });
 
 
@@ -104,8 +153,13 @@ function movePlayer(position) {
 
   // Check if the player has reached the winning position
   if (playerPosition === boardSize) {
-    const logMessage = "Congratulations! You won the game!";
+    // Get the elapsed time for the player
+  const timerElement = document.getElementById("timer");  
+    const logMessage = "Congratulations! You won the game! You total play time was " + timerElement.textContent;
     updateConsoleLog(logMessage);
+    stopTimer(); // Stop the timer
+    const rollDiceButton = document.getElementById("roll-dice");
+    rollDiceButton.disabled = true;
     // You can display a message or perform any other action here
   }
 }
