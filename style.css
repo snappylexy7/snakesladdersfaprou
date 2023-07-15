@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+  }
+  
+  .column {
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+      /* Add CSS styles for the game layout */
+      #game-board {
+display: grid;
+grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns based on your game board size */
+grid-template-rows: repeat(10, 1fr); /* Adjust the number of rows based on your game board size */
+width: 600px; /* Adjust the width to fit your game board size */
+height: 600px; /* Adjust the height to fit your game board size */
+border: 1px solid #000; /* Add a border to the game board */
+}
+
+#game-board div {
+border: 1px solid #000; /* Add a border to each square */
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 28px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#game-board div.player {
+background-color: #ffcc00; /* Set a background color to highlight the player's position */
+color: #fff; /* Set a text color to ensure readability */
+}
+
+.ladder-start {
+background-color: #15a30d;
+}
+
+.ladder-end {
+background-color: #78a676;
+}
+
+.snake-start {
+background-color: #c9321e;
+}
+
+.snake-end {
+background-color: #d67669;
+}
+
+#console-log {
+overflow: auto;
+height: 150px;
+width: 600px;
+background-color: gray;
+border: 2px solid black;
+color: yellow;
+font-weight: bold;
+}
+
+#task-log {
+overflow: auto;
+height: 350px;
+width: 600px;
+background-color: gray;
+border: 2px solid black;
+color: white;
+font-weight: bold;
+font-size: 70px;
+text-align:  center;
+}
+
+button {
+display: inline-block;
+background-color: #7b38d8;
+padding: 20px;
+width: 200px;
+color: #ffffff;
+text-align: center;
+border: 4px double #cccccc; /* add this line */
+border-radius: 10px; /* add this line */
+font-size: 28px; /* add this line */
+}
+
+.sub-heading {
+font-size: 20px;
+font-weight: 600;
+color: #af2174;
+margin-top: 10px;
+margin-bottom: 10px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#timer {
+font-size: 50px;
+font-weight: 600;
+color: #0c0a77;
+margin-top: 10px;
+margin-bottom: 10px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

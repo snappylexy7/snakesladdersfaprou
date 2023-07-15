@@ -2,80 +2,36 @@
 <html>
 <head>
   <title>Snakes and Ladders</title>
-  <style>
-    /* Add CSS styles for the game layout */
-    #game-board {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns based on your game board size */
-  grid-template-rows: repeat(10, 1fr); /* Adjust the number of rows based on your game board size */
-  width: 600px; /* Adjust the width to fit your game board size */
-  height: 600px; /* Adjust the height to fit your game board size */
-  border: 1px solid #000; /* Add a border to the game board */
-}
-
-#game-board div {
-  border: 1px solid #000; /* Add a border to each square */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-}
-
-#game-board div.player {
-  background-color: #ffcc00; /* Set a background color to highlight the player's position */
-  color: #fff; /* Set a text color to ensure readability */
-}
-
-.ladder-start {
-  background-color: #15a30d;
-}
-
-.ladder-end {
-  background-color: #78a676;
-}
-
-.snake-start {
-  background-color: #c9321e;
-}
-
-.snake-end {
-  background-color: #d67669;
-}
-
-#console-log {
-  overflow: auto;
-  height: 150px;
-  width: 600px;
-  background-color: gray;
-  border: 2px solid black;
-  color: yellow;
-  font-weight: bold;
-}
-
-#task-log {
-  overflow: auto;
-  height: 150px;
-  width: 600px;
-  background-color: gray;
-  border: 2px solid black;
-  color: white;
-  font-weight: bold;
-  font-size: xx-large;
-  text-align:  center;
-}
-  </style>
-
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="game-board">
-    <!-- Generate the game board dynamically using JavaScript -->
+  <header>
+    <button id="roll-dice">Roll Dice</button>
+  </header>
+  
+  <div class="container">
+    <div class="column">
+      <div id="game-board">
+        <!-- Generate the game board dynamically using JavaScript -->
+      </div>
+    </div>
+    
+    <div class="column">
+      <span class="sub-heading">Current Task:</span>
+      <br /><br />
+      <div id="task-log" class="task-log"></div>
+      <br /><br />
+      <span class="sub-heading">Elapsed Time</span>
+      <br />
+      <div id="timer">00:00</div>
+    </div>
   </div>
-  <button id="roll-dice">Roll Dice</button>
-    <br /><br />
+  
+  <footer>
     <div id="console-log" class="console-log"></div>
-<br /><br />
-<div id="task-log" class="task-log"></div>
-<div id="timer">00:00</div>
+  </footer>
+
   <script src="script.js"></script>
+
 </body>
 </html>
